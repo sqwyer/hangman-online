@@ -1,0 +1,11 @@
+.letter {
+    position: relative;
+    height: 1rem;
+}
+.letter::before {
+    content: '_';
+    position: absolute;
+    top: 110%;
+    opacity: 1!important;
+    animation: none;
+}
