@@ -24,4 +24,5 @@
 .font-marri,
 * {
   font-family: "Merriweather Sans" !important;
+  user-select: none;
 }

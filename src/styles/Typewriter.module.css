@@ -1,11 +1,26 @@
 .letter {
-    position: relative;
-    height: 1rem;
+  height: 2rem;
+  padding: 0.1rem 0;
+  width: 1rem;
+  border-bottom: 1.5px solid #fff;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
-.letter::before {
-    content: '_';
-    position: absolute;
-    top: 110%;
-    opacity: 1!important;
-    animation: none;
+
+.blink {
+  animation-name: blink;
+  border-bottom: 2px solid #fff;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
+  animation-duration: 1.7s;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+  from {
+    opacity: 1;
+  }
 }

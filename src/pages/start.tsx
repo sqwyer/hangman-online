@@ -13,14 +13,13 @@ const Start: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gradient-to-r from-cyan-500 to-blue-500">
-        <p className="text-sm text-white">197 players online</p>
+        <p className="text-sm text-white">(Press enter to start)</p>
         <h1 className="text-shadow-md text-center text-4xl font-extrabold text-white">
           HANGMAN
           <br />
           <span className="text-6xl italic text-red-600">ONLINE</span>
         </h1>
-        <Typewriter />
-        {/* <p className="text-sm text-white text-opacity-50">Start typing...</p> */}
+        <Typewriter maxlength={25} />
       </main>
       <div className="absolute bottom-2 flex w-full flex-row items-center justify-center gap-2 text-center font-serif text-sm">
         <Link href="/">
