@@ -1,9 +1,22 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import Input from "../components/Input";
 
+const allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
+
+function fixCode(code: string) {
+  let letters = code.split('');
+  if(letters.length > 6) letters.splice(6, letters.length-6)
+  for(let i = 0; i < letters.length; i++) {
+    if(!allowedChars.includes(letters[i] as string)) letters.splice(i,1);
+  }
+  return letters.join('');
+}
+
 const Join: NextPage = () => {
+  const [code, setCode] = useState('')
   return (
     <>
       <Head>
@@ -18,7 +31,12 @@ const Join: NextPage = () => {
           <br />
           <span className="text-6xl italic text-red-600">ONLINE</span>
         </h1>
-        <Input placeholder="Invite Code" />
+        <Input placeholder="Invite Code" value={code} onChange={(event) => {
+          setCode(fixCode(event.target.value));
+          if(code.length == 6) {
+            
+          }
+        }}/>
       </main>
       <div className="absolute bottom-2 flex w-full flex-row items-center justify-center gap-2 text-center font-serif text-sm">
         <Link href="/">

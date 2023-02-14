@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Input from "../components/Input";
 import Typewriter from "../components/Typewriter";
 
 const Start: NextPage = () => {
@@ -19,7 +18,11 @@ const Start: NextPage = () => {
           <br />
           <span className="text-6xl italic text-red-600">ONLINE</span>
         </h1>
-        <Typewriter maxlength={25} />
+        <Typewriter maxlength={25} onenter={(_event, text) => {
+          // tell server that a new game started!
+          // get game id from server
+          // redirect to game page as host
+        }} />
       </main>
       <div className="absolute bottom-2 flex w-full flex-row items-center justify-center gap-2 text-center font-serif text-sm">
         <Link href="/">

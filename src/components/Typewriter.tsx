@@ -18,12 +18,9 @@ function chunksFromArr<T>(arr: T[], size: number) {
   return chunks;
 }
 
-function handleStartGame() {
-  // alert('Woah')
-}
-
 export interface TypewriterProps {
   maxlength?: number;
+  onenter?: (event?: KeyboardEvent, text?: string) => void;
 }
 
 export default function Typewriter(props: TypewriterProps) {
@@ -37,7 +34,7 @@ export default function Typewriter(props: TypewriterProps) {
       )
         setLetters([...letters, e.key]);
       else if (e.code == "Backspace") setLetters(arrWithoutLast(letters));
-      else if (e.code == "Enter" && letters.length > 0) handleStartGame();
+      else if (e.code == "Enter" && letters.length > 0 && props.onenter) props.onenter(e, letters.join(''));
     };
     document.addEventListener("keydown", keyDownHandler);
     return () => {
