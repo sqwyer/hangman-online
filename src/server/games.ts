@@ -1,9 +1,14 @@
 const allowedChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0"];
 
+interface User {
+    name: string,
+    id: string
+}
+
 interface Game {
     code: string,
     host: string,
-    users: string[],
+    users: User[],
     word: string
 }
 
@@ -43,4 +48,4 @@ function generateCode(): string {
     else return code;
 }
 
-export { type Game, games, createGame, closeGame, updateGame, generateCode }
+export { type Game, type User, games, createGame, closeGame, updateGame, generateCode, findGame }

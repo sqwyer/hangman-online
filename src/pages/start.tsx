@@ -1,9 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import Typewriter from "../components/Typewriter";
+import { api } from "../utils/api";
 
 const Start: NextPage = () => {
+  let [page, setPage] = useState(0);
   return (
     <>
       <Head>
@@ -12,31 +15,38 @@ const Start: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gradient-to-r from-cyan-500 to-blue-500">
-        <p className="text-sm text-white">(Press enter to start)</p>
-        <h1 className="text-shadow-md text-center text-4xl font-extrabold text-white">
-          HANGMAN
-          <br />
-          <span className="text-6xl italic text-red-600">ONLINE</span>
-        </h1>
-        <Typewriter maxlength={25} onenter={(_event, text) => {
-          // tell server that a new game started!
-          // get game id from server
-          // redirect to game page as host
-        }} />
-      </main>
-      <div className="absolute bottom-2 flex w-full flex-row items-center justify-center gap-2 text-center font-serif text-sm">
-        <Link href="/">
-          <p className=" hover:text-shadow-md cursor-pointer font-normal text-white duration-100">
-            Go Back
-          </p>
-        </Link>
-        <p className="text-white">◦</p>
-        <Link href="https://github.com/sqwyer/hangman-online" target="_blank">
-          <p className=" hover:text-shadow-md cursor-pointer font-normal text-white duration-100">
-            Github
-          </p>
-        </Link>
-      </div>
+          <p className="text-sm text-white">(Press enter to start)</p>
+          <h1 className="text-shadow-md text-center text-4xl font-extrabold text-white">
+            HANGMAN
+            <br />
+            <span className="text-6xl italic text-red-600">ONLINE</span>
+          </h1>
+          <Typewriter maxlength={25} onenter={(_event, text) => {
+            if(text && text.length > 0) {
+              const game = api.games.createGame.useQuery({name: '', host: '', word: text});
+
+              game.data?.code;
+              game.data?.game;
+            }
+
+            // tell server that a new game started!
+            // get game id from server
+            // redirect to game page as host
+          } } />
+        <div className="absolute bottom-2 flex w-full flex-row items-center justify-center gap-2 text-center font-serif text-sm">
+            <Link href="/">
+              <p className=" hover:text-shadow-md cursor-pointer font-normal text-white duration-100">
+                Go Back
+              </p>
+            </Link>
+            <p className="text-white">◦</p>
+            <Link href="https://github.com/sqwyer/hangman-online" target="_blank">
+              <p className=" hover:text-shadow-md cursor-pointer font-normal text-white duration-100">
+                Github
+              </p>
+            </Link>
+          </div>
+        </main>
     </>
   );
 };
